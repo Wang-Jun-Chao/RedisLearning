@@ -1,4 +1,4 @@
-##CLUSTER COUNT-FAILURE-REPORTS node-id
+## CLUSTER COUNTKEYSINSLOT slot
 
 ----------
     起始版本：3.0.0

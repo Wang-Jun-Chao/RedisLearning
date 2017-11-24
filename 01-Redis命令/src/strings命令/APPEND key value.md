@@ -1,4 +1,4 @@
-## CLUSTER ADDSLOTS slot [slot ...]
+##CLUSTER ADDSLOTS slot [slot ...]
 
 ----------
 

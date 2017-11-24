@@ -1,4 +1,4 @@
-##CLUSTER COUNT-FAILURE-REPORTS node-id
+## CLUSTER COUNT-FAILURE-REPORTS node-id
 
 ----------
 	起始版本：3.0.0

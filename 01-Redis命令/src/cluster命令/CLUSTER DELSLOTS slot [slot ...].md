@@ -1,4 +1,4 @@
-##CLUSTER COUNT-FAILURE-REPORTS node-id
+## CLUSTER DELSLOTS slot [slot ...]
 
 ----------
 
