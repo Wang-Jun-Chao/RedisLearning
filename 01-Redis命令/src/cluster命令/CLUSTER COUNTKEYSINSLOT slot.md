@@ -1,6 +1,5 @@
 ## CLUSTER COUNTKEYSINSLOT slot
 
-----------
     起始版本：3.0.0
     时间复杂度：O(1)
 

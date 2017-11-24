@@ -1,6 +1,5 @@
 ## CLUSTER DELSLOTS slot [slot ...]
 
-----------
 
     起始版本：3.0.0
     时间复杂度：O(N) where N is the total number of hash slot arguments

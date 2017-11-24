@@ -1,6 +1,5 @@
 ## CLUSTER COUNT-FAILURE-REPORTS node-id
 
-----------
 	起始版本：3.0.0
 	时间复杂度：O(N) N是故障报告的数量
 

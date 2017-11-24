@@ -1,6 +1,5 @@
 ## CLUSTER ADDSLOTS slot [slot ...]
 
-----------
 
     起始版本：3.0.0
     时间复杂度：O(N) N是参数的哈希插槽总数
