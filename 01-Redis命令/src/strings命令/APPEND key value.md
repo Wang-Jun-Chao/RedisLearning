@@ -41,6 +41,7 @@ APPEND timeseries "fixed-size sample"
 小贴士: 在键值中组合Unix时间戳, 可以在构建一系列相关键值时缩短键值长度,更优雅地分配Redis实例.
 
 使用定长字符串进行温度采样的例子(在实际使用时,采用二进制格式会更好).
+
 ```
 redis> APPEND ts "0043"
 (integer) 4
