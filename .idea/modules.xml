@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/01-Redis命令/01-Redis命令.iml" filepath="$PROJECT_DIR$/01-Redis命令/01-Redis命令.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/01-程序化配置方法/01-程序化配置方法.iml" filepath="$PROJECT_DIR$/02-Redisson/01-程序化配置方法/01-程序化配置方法.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/02-Redisson.iml" filepath="$PROJECT_DIR$/02-Redisson/02-Redisson.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-Redisson/03-程序接口调用方式/03-程序接口调用方式.iml" filepath="$PROJECT_DIR$/02-Redisson/03-程序接口调用方式/03-程序接口调用方式.iml" />
     </modules>
   </component>
 </project>

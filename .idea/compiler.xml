@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="01-程序化配置方法" />
         <module name="02-Redisson" />
+        <module name="03-程序接口调用方式" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="01-程序化配置方法" target="1.8" />
       <module name="02-Redisson" target="1.8" />
+      <module name="03-程序接口调用方式" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
