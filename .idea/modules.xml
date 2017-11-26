@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/01-Redis命令/01-Redis命令.iml" filepath="$PROJECT_DIR$/01-Redis命令/01-Redis命令.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-Redisson/01-程序化配置方法/01-程序化配置方法.iml" filepath="$PROJECT_DIR$/02-Redisson/01-程序化配置方法/01-程序化配置方法.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/02-Redisson.iml" filepath="$PROJECT_DIR$/02-Redisson/02-Redisson.iml" />
     </modules>
   </component>

@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/02-Redisson/pom.xml" />
+        <option value="$PROJECT_DIR$/02-Redisson/01-程序化配置方法/pom.xml" />
       </list>
     </option>
   </component>

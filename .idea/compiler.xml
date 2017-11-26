@@ -6,10 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="01-程序化配置方法" />
         <module name="02-Redisson" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="01-程序化配置方法" target="1.8" />
       <module name="02-Redisson" target="1.8" />
     </bytecodeTargetLevel>
   </component>
