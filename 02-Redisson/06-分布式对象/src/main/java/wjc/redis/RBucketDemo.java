@@ -26,12 +26,18 @@ public class RBucketDemo {
         RBucket<AnyObject> bucket = redisson.getBucket("anyObject");
         bucket.set(new AnyObject(1));
         AnyObject obj = bucket.get();
+        System.out.println(mapper.writeValueAsString(obj));
 
-        System.out.println(mapper.writeValueAsString(redisson.getBucket("anyObject").get()));
 
-        bucket.trySet(new AnyObject(3));
-        bucket.compareAndSet(new AnyObject(4), new AnyObject(5));
-        bucket.getAndSet(new AnyObject(6));
+        bucket.set(new AnyObject(3));
+        System.out.println(mapper.writeValueAsString(bucket.get()));
+
+        bucket.compareAndSet(new AnyObject(3), new AnyObject(5));
+        System.out.println(mapper.writeValueAsString(bucket.get()));
+
+        obj = bucket.getAndSet(new AnyObject(6));
+        System.out.println(mapper.writeValueAsString(obj));
+        System.out.println(mapper.writeValueAsString(bucket.get()));
 
         redisson.shutdown();
     }
