@@ -35,7 +35,6 @@ public class RTopicDemo {
         // 在其他线程或JVM节点
         RTopic<SomeObject> topic2 = redisson.getTopic("anyTopic");
         long clientsReceivedMessage = topic2.publish(new SomeObject("Hello World"));
-
         System.out.println(clientsReceivedMessage);
 
 
