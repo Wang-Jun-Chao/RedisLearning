@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/02-Redisson/03-程序接口调用方式/pom.xml" />
         <option value="$PROJECT_DIR$/02-Redisson/04-数据序列化/pom.xml" />
         <option value="$PROJECT_DIR$/02-Redisson/06-分布式对象/pom.xml" />
+        <option value="$PROJECT_DIR$/02-Redisson/07-分布式集合/pom.xml" />
       </list>
     </option>
   </component>
