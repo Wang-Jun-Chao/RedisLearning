@@ -62,7 +62,7 @@ public class RMapDemo {
         map.fastRemoveAsync("321");
         System.out.println(mapper.writeValueAsString(map));
 
-//        redisson.getKeys().flushall();
+        redisson.getKeys().flushall();
         redisson.shutdown();
     }
 }
