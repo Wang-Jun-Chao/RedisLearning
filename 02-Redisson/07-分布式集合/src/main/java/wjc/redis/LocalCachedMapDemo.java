@@ -47,10 +47,11 @@ public class LocalCachedMapDemo {
 
         map.put("1", 1);
         map.put("2", 2);
-
         map.fastPut("3", 4);
 
-//        redisson.getKeys().flushall();
+        map.destroy();
+
+        redisson.getKeys().flushall();
         redisson.shutdown();
     }
 }
