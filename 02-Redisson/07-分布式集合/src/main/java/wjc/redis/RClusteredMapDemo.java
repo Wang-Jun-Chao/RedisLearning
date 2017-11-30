@@ -15,7 +15,12 @@ public class RClusteredMapDemo {
     public static void main(String[] args) {
         Config config = new Config();
         config.setUseLinuxNativeEpoll(true);
-        config.useClusterServers().addNodeAddress("redis://192.168.241.150:7110");
+        config.useClusterServers()
+                .addNodeAddress("redis://192.168.241.150:7110")
+                .addNodeAddress("redis://192.168.241.150:7111")
+                .addNodeAddress("redis://192.168.241.150:7112")
+                .addNodeAddress("redis://192.168.241.150:7113")
+                .addNodeAddress("redis://192.168.241.150:7114");
         RedissonClient redisson = Redisson.create(config);
 
         redisson.getKeys().flushall();
