@@ -37,9 +37,9 @@ public class RSetMultimapCacheDemo {
 
         System.out.println(multimap.entries());
 
-        multimap.expireKey("2", 5, TimeUnit.SECONDS);
+        multimap.expireKey("2", 4, TimeUnit.SECONDS);
 
-        Thread.sleep(6000);
+        Thread.sleep(8000);
 
         System.out.println(multimap.entries());
 
