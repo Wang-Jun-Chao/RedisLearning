@@ -2,8 +2,12 @@ package wjc.redis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.redisson.Redisson;
+import org.redisson.api.RFuture;
+import org.redisson.api.RSortedSet;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * Author: 王俊超
@@ -13,19 +17,42 @@ import org.redisson.config.Config;
  * All Rights Reserved !!!
  */
 public class RSortedSetDemo {
-        public static void main(String[] args) {
-            ObjectMapper mapper = new ObjectMapper();
+    public static void main(String[] args) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
 
-            Config config = new Config();
-            config.useSingleServer().setAddress("redis://127.0.0.1:6379");
-            RedissonClient redisson = Redisson.create(config);
+        Config config = new Config();
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+        RedissonClient redisson = Redisson.create(config);
 
-            redisson.getKeys().flushall();
-
-
+        redisson.getKeys().flushall();
 
 
-            redisson.getKeys().flushall();
-            redisson.shutdown();
+        RSortedSet<Integer> set = redisson.getSortedSet("anySet");
+        set.trySetComparator(new MyComparator()); // 配置元素比较器
+        set.add(3);
+        set.add(1);
+        set.add(2);
+
+        System.out.println(set);
+
+        RFuture<Boolean> future = set.removeAsync(1);
+
+
+        if (future.get()) {
+            System.out.println("remove success: " + set);
+        } else {
+            System.out.println("remove fail: " + set);
+        }
+
+        future = set.addAsync(5);
+
+        if (future.get()) {
+            System.out.println("add success: " + set);
+        } else {
+            System.out.println("add fail: " + set);
+        }
+
+        redisson.getKeys().flushall();
+        redisson.shutdown();
     }
 }
