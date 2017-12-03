@@ -14,7 +14,7 @@ import org.redisson.config.Config;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
-public class ScoredSortedSetDemo {
+public class RScoredSortedSetDemo {
     public static void main(String[] args) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
 

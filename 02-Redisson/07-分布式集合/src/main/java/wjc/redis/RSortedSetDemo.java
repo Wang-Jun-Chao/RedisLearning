@@ -7,8 +7,6 @@ import org.redisson.api.RSortedSet;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
-import java.util.concurrent.ExecutionException;
-
 /**
  * Author: 王俊超
  * Date: 2017-12-03 07:22
