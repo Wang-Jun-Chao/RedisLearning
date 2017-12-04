@@ -1,7 +1,10 @@
 package wjc.redis;
 
 import org.redisson.Redisson;
+import org.redisson.api.RFuture;
 import org.redisson.api.RedissonClient;
+
+import java.util.UUID;
 
 /**
  * Author: 王俊超
@@ -20,17 +23,18 @@ public class RemoteAsyncServiceDemo {
         try {
             // 在调用远程方法以前，应该首先注册远程服务
             // 只注册了一个服务端工作者实例，只能同时执行一个并发调用
-            server.getRemoteService().register(RemoteInterface.class, new RemoteImpl());
-
-            // 注册了12个服务端工作者实例，可以同时执行12个并发调
-//            server.getRemoteService().register(RemoteInterface.class, new RemoteImpl(), 12);
+            server.getRemoteService().register(RemoteInterface2.class, new RemoteInterface2Impl());
 
             // 客户端调用
-            RemoteInterface service = client.getRemoteService().get(RemoteInterface.class);
+            RemoteInterfaceAsync service = client.getRemoteService().get(RemoteInterfaceAsync.class);
 
-            Long r = service.myMethod(21L);
-            System.out.println("result: " + r);
+            RFuture<Long> future = service.someMethod1(1L, "a");
+            System.out.println(future.get());
 
+            service.someMethod2(new MyObject(UUID.randomUUID().toString()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             client.shutdown();
             server.shutdown();
