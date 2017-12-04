@@ -11,7 +11,7 @@ import org.redisson.api.annotation.RRemoteAsync;
  * All Rights Reserved !!!
  */
 // 匹配远程接口的异步接口
-@RRemoteAsync(RemoteInterface.class)
+@RRemoteAsync(RemoteInterface2.class)
 public interface RemoteInterfaceAsync {
     RFuture<Long> someMethod1(Long param1, String param2);
 
