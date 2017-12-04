@@ -43,8 +43,6 @@ public class RReadWriteLockDemo {
 
         lock.writeLock().unlock();
 
-        t.join();
-
         redisson.shutdown();
     }
 }
