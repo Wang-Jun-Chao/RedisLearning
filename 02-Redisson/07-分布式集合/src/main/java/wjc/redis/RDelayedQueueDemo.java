@@ -28,7 +28,7 @@ public class RDelayedQueueDemo {
 
         RQueue<String> distinationQueue = redisson.getQueue("myQueue");
         RDelayedQueue<String> delayedQueue = redisson.getDelayedQueue(distinationQueue);
-        // 10秒钟以后将消息发送到指定列队
+        // 5秒钟以后将消息发送到指定列队
         delayedQueue.offer("msg1", 5, TimeUnit.SECONDS);
         System.out.println("distinationQueue: " + mapper.writeValueAsString(distinationQueue));
         System.out.println("=====");
@@ -36,7 +36,7 @@ public class RDelayedQueueDemo {
         System.out.println("distinationQueue: " + mapper.writeValueAsString(distinationQueue));
         System.out.println("=====");
 
-        // 一分钟以后将消息发送到指定列队
+        // 8秒以后将消息发送到指定列队
         delayedQueue.offer("msg2", 8, TimeUnit.SECONDS);
         System.out.println("distinationQueue: " + mapper.writeValueAsString(distinationQueue));
         System.out.println("=====");
