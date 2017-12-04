@@ -72,6 +72,7 @@ public class RBoundedBlockingQueueDemo {
                 redisson.getKeys().flushall();
                 redisson.shutdown();
 
+                // 关闭线程池
                 scheduledThreadPool.shutdown();
             }
         }, 10, TimeUnit.SECONDS);
