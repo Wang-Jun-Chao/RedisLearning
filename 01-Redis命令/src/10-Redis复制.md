@@ -3,6 +3,7 @@
 Redis复制很简单易用，它通过配置允许slave Redis Servers或者Master Servers的复制品。接下来有几个关于redis复制的非常重要特性：
 
 - 一个Master可以有多个Slaves。
+
 - Slaves能过接口其他slave的链接，除了可以接受同一个master下面slaves的链接以外，还可以接受同一个结构图中的其他slaves的链接。
 
 - redis复制是在master段是非阻塞的，这就意味着master在同一个或多个slave端执行同步的时候还可以接受查询。
