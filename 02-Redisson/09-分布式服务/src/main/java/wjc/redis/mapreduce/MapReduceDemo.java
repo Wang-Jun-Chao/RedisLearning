@@ -37,15 +37,18 @@ public class MapReduceDemo {
                 .mapper(new WordMapper())
                 .reducer(new WordReducer());
 
+        System.out.println(mapReduce == null);
+
         // 统计词频
         Map<String, Integer> mapToNumber = mapReduce.execute();
+        System.out.println(mapToNumber);
         System.out.println(mapper.writerWithDefaultPrettyPrinter()
                 .writeValueAsString(mapToNumber));
 
         // 统计字数
         Integer totalWordsAmount = mapReduce.execute(new WordCollator());
         System.out.println("totalWordsAmount: " + totalWordsAmount);
-
+//
         redisson.shutdown();
     }
 }

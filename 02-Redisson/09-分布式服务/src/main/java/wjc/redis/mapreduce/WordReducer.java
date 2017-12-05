@@ -17,7 +17,7 @@ public class WordReducer implements RReducer<String, Integer> {
     public Integer reduce(String reducedKey, Iterator<Integer> iter) {
         int sum = 0;
         while (iter.hasNext()) {
-            Integer i = iter.next();
+            Integer i = (Integer) iter.next();
             sum += i;
         }
         return sum;

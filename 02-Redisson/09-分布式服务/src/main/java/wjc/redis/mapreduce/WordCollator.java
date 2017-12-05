@@ -12,6 +12,7 @@ import java.util.Map;
  * All Rights Reserved !!!
  */
 public class WordCollator implements RCollator<String, Integer, Integer> {
+
     @Override
     public Integer collate(Map<String, Integer> resultMap) {
         int result = 0;
@@ -20,4 +21,5 @@ public class WordCollator implements RCollator<String, Integer, Integer> {
         }
         return result;
     }
+
 }
