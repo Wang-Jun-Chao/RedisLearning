@@ -23,6 +23,7 @@ public class LiveObjectServiceDemo {
 
         // connects to 127.0.0.1:6379 by default
         RedissonClient redisson = Redisson.create();
+        redisson.getKeys().flushall();
 
         RLiveObjectService liveObjectService = redisson.getLiveObjectService();
 
@@ -62,6 +63,12 @@ public class LiveObjectServiceDemo {
 
         // "live" object could be get on other JVM.
         Customer attachedCustomer = liveObjectService.get(Customer.class, "12");
+        System.out.println(mapper.writerWithDefaultPrettyPrinter()
+                .writeValueAsString(attachedCustomer));
+
+        System.out.println("=====");
+
+
         for (Order attachedOrder : attachedCustomer.getOrders()) {
             for (OrderDetail orderDetail : attachedOrder.getOrderDetails()) {
                 System.out.println(mapper.writerWithDefaultPrettyPrinter()
@@ -71,8 +78,9 @@ public class LiveObjectServiceDemo {
 
         Product attachedProduct = liveObjectService.get(Product.class, 1L);
         System.out.println(mapper.writerWithDefaultPrettyPrinter()
-                .writeValueAsString(attachedCustomer));
+                .writeValueAsString(attachedProduct));
 
+        redisson.getKeys().flushall();
         redisson.shutdown();
     }
 }
