@@ -1,4 +1,4 @@
-package wjc.redis;
+package wjc.redis.remoteservice;
 
 /**
  * Author: 王俊超

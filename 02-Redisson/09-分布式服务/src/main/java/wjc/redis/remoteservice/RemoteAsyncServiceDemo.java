@@ -1,4 +1,4 @@
-package wjc.redis;
+package wjc.redis.remoteservice;
 
 import org.redisson.Redisson;
 import org.redisson.api.RFuture;
