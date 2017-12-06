@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/07-分布式集合/07-分布式集合.iml" filepath="$PROJECT_DIR$/02-Redisson/07-分布式集合/07-分布式集合.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/08-分布式锁和同步器/08-分布式锁和同步器.iml" filepath="$PROJECT_DIR$/02-Redisson/08-分布式锁和同步器/08-分布式锁和同步器.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/09-分布式服务/09-分布式服务.iml" filepath="$PROJECT_DIR$/02-Redisson/09-分布式服务/09-分布式服务.iml" />
+      <module fileurl="file://$PROJECT_DIR$/02-Redisson/10-额外功能/10-额外功能.iml" filepath="$PROJECT_DIR$/02-Redisson/10-额外功能/10-额外功能.iml" />
     </modules>
   </component>
 </project>

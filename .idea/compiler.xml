@@ -14,6 +14,7 @@
         <module name="07-分布式集合" />
         <module name="08-分布式锁和同步器" />
         <module name="09-分布式服务" />
+        <module name="10-额外功能" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +26,7 @@
       <module name="07-分布式集合" target="1.8" />
       <module name="08-分布式锁和同步器" target="1.8" />
       <module name="09-分布式服务" target="1.8" />
+      <module name="10-额外功能" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
