@@ -117,8 +117,8 @@ appendonly yes
 
 - 为现有的 AOF 文件创建一个备份。
 
-- 使用 Redis 附带的 redis-check-aof 程序，对原来的 AOF 文件进行修复:
-$ redis-check-aof –fix
+- 使用 Redis 附带的 redis-check-aof 程序，对原来的 AOF 文件进行修复: `$ redis-check-aof –fix`
+
 
 - （可选）使用 diff -u 对比修复后的 AOF 文件和原始 AOF 文件的备份，查看两个文件之间的不同之处。
 
