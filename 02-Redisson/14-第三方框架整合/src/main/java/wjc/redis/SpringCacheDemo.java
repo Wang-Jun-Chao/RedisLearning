@@ -1,6 +1,7 @@
 package wjc.redis;
 
 import org.redisson.api.RedissonClient;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,11 +17,11 @@ import java.io.IOException;
 public class SpringCacheDemo {
     public static void main(String[] args) throws IOException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("application2.xml");
-        RedissonClient client = ctx.getBean(RedissonClient.class, "oneClient");
+        RedissonClient client = ctx.getBean(RedissonClient.class);
         System.out.println(client.getConfig().toYAML());
 
-        ctx.getBean(RedissonClient.class, "otherClient");
-        System.out.println(client.getConfig().toYAML());
+        CacheManager manager = ctx.getBean(CacheManager.class);
+        System.out.println(manager);
 
         client.shutdown();
     }

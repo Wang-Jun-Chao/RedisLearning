@@ -20,7 +20,7 @@ public class SpringFrameworkDemo {
         System.out.println(client.getConfig().toYAML());
         client.shutdown();
 
-        ctx.getBean("otherClient", RedissonClient.class);
+        client = ctx.getBean("otherClient", RedissonClient.class);
         System.out.println(client.getConfig().toYAML());
         client.shutdown();
     }
