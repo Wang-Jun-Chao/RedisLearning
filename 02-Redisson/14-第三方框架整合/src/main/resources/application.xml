@@ -1,0 +1,20 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:redisson="http://redisson.org/schema/redisson"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+       http://redisson.org/schema/redisson
+       http://redisson.org/schema/redisson/redisson.xsd">
+
+    <!-- 最基本配置 -->
+    <redisson:client name="oneClient">
+        <!-- 默认地址是 127.0.0.1:6379 -->
+        <redisson:single-server/>
+    </redisson:client>
+    <!-- 或者 -->
+    <redisson:client name="otherClient">
+        <redisson:single-server address="127.0.0.1"/>
+    </redisson:client>
+</beans>
