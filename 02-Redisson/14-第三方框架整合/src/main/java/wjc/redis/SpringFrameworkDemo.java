@@ -16,12 +16,12 @@ import java.io.IOException;
 public class SpringFrameworkDemo {
     public static void main(String[] args) throws IOException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
-        RedissonClient client = ctx.getBean(RedissonClient.class, "oneClient");
+        RedissonClient client = ctx.getBean("oneClient", RedissonClient.class);
         System.out.println(client.getConfig().toYAML());
+        client.shutdown();
 
-        ctx.getBean(RedissonClient.class, "otherClient");
+        ctx.getBean("otherClient", RedissonClient.class);
         System.out.println(client.getConfig().toYAML());
-
         client.shutdown();
     }
 }
