@@ -13,7 +13,7 @@ import java.io.IOException;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
-public class SpringIntegrationDemo {
+public class SpringFrameworkDemo {
     public static void main(String[] args) throws IOException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("application.xml");
         RedissonClient client = ctx.getBean(RedissonClient.class, "oneClient");
