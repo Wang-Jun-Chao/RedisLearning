@@ -91,9 +91,9 @@ sentinel <选项的名字> <主服务器的名字> <选项的值>
 
 前面说过， Redis 的 Sentinel 中关于下线（down）有两个不同的概念：
 
-- **主观下线（Subjectively Down， 简称 SDOWN）**指的是单个 Sentinel 实例对服务器做出的下线判断。
+- **主观下线（Subjectively Down， 简称 SDOWN）** 指的是单个 Sentinel 实例对服务器做出的下线判断。
 
-- **客观下线（Objectively Down， 简称 ODOWN）**指的是多个 Sentinel 实例在对同一个服务器做出 SDOWN 判断， 并且通过 SENTINEL is-master-down-by-addr 命令互相交流之后， 得出的服务器下线判断。 （一个 Sentinel 可以通过向另一个 Sentinel 发送 SENTINEL is-master-down-by-addr 命令来询问对方是否认为给定的服务器已下线。）
+- **客观下线（Objectively Down， 简称 ODOWN）** 指的是多个 Sentinel 实例在对同一个服务器做出 SDOWN 判断， 并且通过 SENTINEL is-master-down-by-addr 命令互相交流之后， 得出的服务器下线判断。 （一个 Sentinel 可以通过向另一个 Sentinel 发送 SENTINEL is-master-down-by-addr 命令来询问对方是否认为给定的服务器已下线。）
 
 如果一个服务器没有在 master-down-after-milliseconds 选项所指定的时间内， 对向它发送 PING 命令的 Sentinel 返回一个有效回复（valid reply）， 那么 Sentinel 就会将这个服务器标记为主观下线。
 
