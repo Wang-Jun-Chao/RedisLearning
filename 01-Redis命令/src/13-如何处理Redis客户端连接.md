@@ -1,5 +1,8 @@
 # Redis如何处理客户端连接
 
+## [【博文总目录>>>】](http://blog.csdn.net/derrantcm/article/details/73456550)|[【工程下载>>>】](https://github.com/Wang-Jun-Chao/RedisLearning)
+
+
 本文档提供有关Redis如何处理来自客户端的信息，从网络层来看包含以下几点：连接、超时、缓冲区以及一些其它类似的主题。 这篇文档所包含的信息 仅仅适用于Redis的2.6或者更高版本。
 
 ## 客户端的连接的建立
