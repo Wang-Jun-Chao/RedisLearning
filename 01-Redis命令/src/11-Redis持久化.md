@@ -2,7 +2,6 @@
 
 ## [【博文总目录>>>】](http://blog.csdn.net/derrantcm/article/details/73456550)|[【工程下载>>>】](https://github.com/Wang-Jun-Chao/RedisLearning)
 
-
 Redis 提供了不同级别的持久化方式:
 
 - RDB持久化方式能够在指定的时间间隔能对你的数据进行快照存储.

@@ -1,5 +1,7 @@
 # Redis延迟监控框架
 
+## [【博文总目录>>>】](http://blog.csdn.net/derrantcm/article/details/73456550)|[【工程下载>>>】](https://github.com/Wang-Jun-Chao/RedisLearning)
+
 每个Redis实例经常被用于每时每刻都要提供大量查询服务的场景，同时，对平均响应时间和最大响应延迟的要求都非常严格。
 
 当Redis用作内存系统时，它以不同的方式与操作系统进行交互，例如，持久化数据到磁盘上。再者，Redis实现了丰富的命令集。大部分命令执行都很快，能在确定时间内或对数时间内完成（译者注；对数时间是时间复杂度的一种），另外有些命令则是复杂度为O(N)的命令，会导致延迟毛刺（latency spikes）。
