@@ -84,7 +84,13 @@ Redis为什么不使用真实的LRU实现是因为这需要太多的内存。不
 
 用于生成图像的Redis服务被填充了指定数量的键。这些键将被从头到尾访问，所以当使用LRU算法时第一个键是最佳的回收候选键。接着添加超过50%的键，用于强制旧键被回收。
 
+![image](https://github.com/Wang-Jun-Chao/RedisLearning/blob/master/01-Redis%E5%91%BD%E4%BB%A4/src/image/lru_comparison_1.png)
 
+![image](https://github.com/Wang-Jun-Chao/RedisLearning/blob/master/01-Redis%E5%91%BD%E4%BB%A4/src/image/lru_comparison_2.png)
+
+![image](https://github.com/Wang-Jun-Chao/RedisLearning/blob/master/01-Redis%E5%91%BD%E4%BB%A4/src/image/lru_comparison_3.png)
+
+![image](https://github.com/Wang-Jun-Chao/RedisLearning/blob/master/01-Redis%E5%91%BD%E4%BB%A4/src/image/lru_comparison_4.png)
 
 你可以看到三种点在图片中, 形成了三种带.
 
