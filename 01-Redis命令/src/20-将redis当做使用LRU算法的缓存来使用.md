@@ -1,5 +1,7 @@
 # 将redis当做使用LRU算法的缓存来使用
 
+## [【博文总目录>>>】](http://blog.csdn.net/derrantcm/article/details/73456550)|[【工程下载>>>】](https://github.com/Wang-Jun-Chao/RedisLearning)
+
 当Redis被当做缓存来使用，当你新增数据时，让它自动地回收旧数据是件很方便的事情。这个行为在开发者社区非常有名，因为它是流行的memcached系统的默认行为。
 
 LRU是Redis唯一支持的回收方法。本页面包括一些常规话题，Redis的maxmemory指令用于将可用内存限制成一个固定大小，还包括了Redis使用的LRU算法，这个实际上只是近似的LRU。
