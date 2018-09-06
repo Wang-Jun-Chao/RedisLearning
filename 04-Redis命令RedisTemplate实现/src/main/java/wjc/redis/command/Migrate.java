@@ -15,13 +15,14 @@ import wjc.redis.Command;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
-public class Migrate extends Command<byte[], String> {
+public class Migrate extends Command<String, String> {
 
     @Test
     public void test() {
 
-        template.opsForValue().set("mykey".getBytes(), "Hello World");
+        template.opsForValue().set("mykey", "Hello World");
 
+        // TODO mykey在底层是如何存储的未知
         RedisNode redisNode = new RedisNode("localhost", 6379);
         template.getConnectionFactory().getConnection().migrate("mykey".getBytes(),
                 redisNode, 0, RedisServerCommands.MigrateOption.COPY);
