@@ -4,7 +4,6 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.util.*;
 
@@ -40,7 +39,7 @@ public class Sample {
         template.setHashKeySerializer(new GenericJackson2JsonRedisSerializer());
         template.setHashValueSerializer(new JdkSerializationRedisSerializer());
 
-        template.setKeySerializer(new StringRedisSerializer());
+        template.setKeySerializer(new GenericJackson2JsonRedisSerializer());
         template.setValueSerializer(new JdkSerializationRedisSerializer());
 
         template.afterPropertiesSet();

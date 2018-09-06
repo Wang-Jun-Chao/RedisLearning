@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/02-Redisson.iml" filepath="$PROJECT_DIR$/02-Redisson/02-Redisson.iml" />
       <module fileurl="file://$PROJECT_DIR$/03-Redis设计与实现/03-Redis设计与实现.iml" filepath="$PROJECT_DIR$/03-Redis设计与实现/03-Redis设计与实现.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/03-程序接口调用方式/03-程序接口调用方式.iml" filepath="$PROJECT_DIR$/02-Redisson/03-程序接口调用方式/03-程序接口调用方式.iml" />
+      <module fileurl="file://$PROJECT_DIR$/04-Redis命令RedisTemplate实现/04-Redis命令RedisTemplate实现.iml" filepath="$PROJECT_DIR$/04-Redis命令RedisTemplate实现/04-Redis命令RedisTemplate实现.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/04-数据序列化/04-数据序列化.iml" filepath="$PROJECT_DIR$/02-Redisson/04-数据序列化/04-数据序列化.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/06-分布式对象/06-分布式对象.iml" filepath="$PROJECT_DIR$/02-Redisson/06-分布式对象/06-分布式对象.iml" />
       <module fileurl="file://$PROJECT_DIR$/02-Redisson/07-分布式集合/07-分布式集合.iml" filepath="$PROJECT_DIR$/02-Redisson/07-分布式集合/07-分布式集合.iml" />

@@ -13,6 +13,8 @@
         <option value="$PROJECT_DIR$/02-Redisson/09-分布式服务/pom.xml" />
         <option value="$PROJECT_DIR$/02-Redisson/10-额外功能/pom.xml" />
         <option value="$PROJECT_DIR$/02-Redisson/14-第三方框架整合/pom.xml" />
+        <option value="$PROJECT_DIR$/04-Redis批量操作/pom.xml" />
+        <option value="$PROJECT_DIR$/04-Redis命令RedisTemplate实现/pom.xml" />
       </list>
     </option>
   </component>

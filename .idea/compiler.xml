@@ -9,6 +9,7 @@
         <module name="01-程序化配置方法" />
         <module name="02-Redisson" />
         <module name="03-程序接口调用方式" />
+        <module name="04-Redis命令RedisTemplate实现" />
         <module name="04-数据序列化" />
         <module name="06-分布式对象" />
         <module name="07-分布式集合" />
@@ -22,6 +23,7 @@
       <module name="01-程序化配置方法" target="1.8" />
       <module name="02-Redisson" target="1.8" />
       <module name="03-程序接口调用方式" target="1.8" />
+      <module name="04-Redis命令RedisTemplate实现" target="1.8" />
       <module name="04-数据序列化" target="1.8" />
       <module name="06-分布式对象" target="1.8" />
       <module name="07-分布式集合" target="1.8" />
