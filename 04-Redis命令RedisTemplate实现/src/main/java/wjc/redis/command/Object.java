@@ -1,5 +1,6 @@
 package wjc.redis.command;
 
+import org.junit.Assert;
 import org.junit.Test;
 import wjc.redis.Command;
 
@@ -17,5 +18,6 @@ public class Object extends Command<String, String> {
     @Test
     public void test() {
         System.out.println("RedistTemplate dose not have command object");
+        Assert.fail();
     }
 }
