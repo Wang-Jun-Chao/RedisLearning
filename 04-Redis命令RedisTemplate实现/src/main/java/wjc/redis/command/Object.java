@@ -16,8 +16,6 @@ import wjc.redis.Command;
 public class Object extends Command<String, String> {
     @Test
     public void test() {
-        template.opsForList().leftPush("mylist", "Hello World");
-
-//        template.getConnectionFactory().getConnection().getConnection
+        System.out.println("RedistTemplate dose not have command object");
     }
 }
