@@ -1,4 +1,4 @@
-package wjc.redis.command;
+package wjc.redis.command.keys;
 
 import com.google.common.collect.Sets;
 import org.junit.Assert;

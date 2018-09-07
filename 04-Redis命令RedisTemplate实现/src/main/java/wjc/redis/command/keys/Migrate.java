@@ -1,4 +1,4 @@
-package wjc.redis.command;
+package wjc.redis.command.keys;
 
 import org.junit.Test;
 import org.springframework.data.redis.connection.RedisNode;
