@@ -20,14 +20,27 @@ import java.util.Collection;
 public class Del extends Command<String, String> {
 
     @Test
-    public void test() {
+    public void testTemplate() {
         template.opsForValue().set("key1", "Hello");
         template.opsForValue().set("key2", "World");
-
 
         Collection<String> list = Lists.newArrayList("key1", "key2", "key3");
         Long delete = template.delete(list);
 
+        Assert.assertEquals(Long.valueOf(2), delete);
+    }
+
+    @Test
+    public void testConnection() {
+        template.opsForValue().set("key1", "Hello");
+        template.opsForValue().set("key2", "World");
+
+        byte[][] keys = new byte[][]{
+                keySerializer.serialize("key1"),
+                keySerializer.serialize("key2"),
+                keySerializer.serialize("key3")};
+        Long delete = connection.del(keys);
+        System.out.println(delete);
         Assert.assertEquals(Long.valueOf(2), delete);
     }
 }
