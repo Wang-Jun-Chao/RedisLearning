@@ -23,24 +23,39 @@ public class Command<K, V> {
     protected RedisSerializer<K> keySerializer;
 
     public Command() {
-        LettuceConnectionFactory factory = new LettuceConnectionFactory();
-        factory.afterPropertiesSet();
+        template = template();
+        keySerializer = keySerializer(template);
+        connection = connection(template);
+    }
 
-        template = new RedisTemplate<>();
-        template.setConnectionFactory(factory);
-
+    private static <K, V> void setSerializer(RedisTemplate<K, V> template) {
         template.setHashKeySerializer(new GenericJackson2JsonRedisSerializer());
         template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         template.setKeySerializer(new GenericJackson2JsonRedisSerializer());
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+    }
+
+    public static <K, V> RedisTemplate<K, V> template() {
+        LettuceConnectionFactory factory = new LettuceConnectionFactory();
+        factory.afterPropertiesSet();
+        RedisTemplate<K, V> template = new RedisTemplate<>();
+        setSerializer(template);
+        template.setConnectionFactory(factory);
 
         template.afterPropertiesSet();
-        keySerializer = (RedisSerializer<K>) template.getKeySerializer();
-        connection = template.getConnectionFactory().getConnection();
+        return template;
+    }
+
+    public static RedisConnection connection(RedisTemplate template) {
+        return template.getConnectionFactory().getConnection();
+    }
+
+    public static RedisSerializer keySerializer(RedisTemplate template) {
+        return template.getKeySerializer();
     }
 
     @Before
     public void setUp() {
-        template.getConnectionFactory().getConnection().flushAll();
+        connection.flushAll();
     }
 }

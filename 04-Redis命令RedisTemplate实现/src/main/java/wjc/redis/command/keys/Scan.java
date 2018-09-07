@@ -34,6 +34,7 @@ public class Scan extends Command<String, String> {
         while (cursor.hasNext()) {
             key = keySerializer.deserialize(cursor.next());
             System.out.println("cursorId: " + cursor.getCursorId() + ", position: " + cursor.getPosition() + ", key: " + key);
+
             Assert.assertTrue(set.contains(key));
             set.remove(key);
         }
