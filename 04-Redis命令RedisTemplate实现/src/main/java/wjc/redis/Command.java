@@ -1,6 +1,7 @@
 package wjc.redis;
 
 import org.junit.Before;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
@@ -17,6 +18,7 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
  */
 public class Command<K, V> {
     protected RedisTemplate<K, V> template;
+    protected RedisConnection connection;
 
     public Command() {
         LettuceConnectionFactory factory = new LettuceConnectionFactory();
@@ -31,6 +33,7 @@ public class Command<K, V> {
         template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
 
         template.afterPropertiesSet();
+        connection = template.getConnectionFactory().getConnection();
     }
 
     @Before

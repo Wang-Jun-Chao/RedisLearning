@@ -7,14 +7,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import wjc.redis.Command;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * @author: wangjunchao(王俊超)
  * @time: 2018-09-07 18:51
  **/
-public class Pexpire extends Command<String, String> {
-    private final static Logger logger = LoggerFactory.getLogger(Pexpire.class);
+public class PExpire extends Command<String, String> {
+    private final static Logger logger = LoggerFactory.getLogger(PExpire.class);
 
     @Test
     public void test() {
