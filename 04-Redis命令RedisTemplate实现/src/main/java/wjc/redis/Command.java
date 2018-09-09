@@ -17,15 +17,17 @@ import org.springframework.data.redis.serializer.RedisSerializer;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
-public class Command<K, V> {
+public abstract class Command<K, V> {
     protected RedisTemplate<K, V> template;
     protected RedisConnection connection;
     protected RedisSerializer<K> keySerializer;
+    protected RedisSerializer<K> valueSerializer;
 
     public Command() {
         template = template();
         keySerializer = keySerializer(template);
         connection = connection(template);
+        valueSerializer = valueSerializer(template);
     }
 
     private static <K, V> void setSerializer(RedisTemplate<K, V> template) {
@@ -54,8 +56,18 @@ public class Command<K, V> {
         return template.getKeySerializer();
     }
 
+    public static RedisSerializer valueSerializer(RedisTemplate template) {
+        return template.getKeySerializer();
+    }
+
     @Before
     public void setUp() {
         connection.flushAll();
+    }
+
+    public void testTemplate() {
+    }
+
+    public void testConnection() {
     }
 }
