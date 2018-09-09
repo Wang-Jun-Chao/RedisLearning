@@ -40,12 +40,22 @@ public class Type extends Command<String, String> {
     @Test
     @Override
     public void testConnection() {
-        byte[] mykey = keySerializer.serialize("mykey");
-        connection.set(mykey, valueSerializer.serialize("Hello"));
-        connection.expire(mykey, 10);
-        Long ttl = connection.ttl(mykey);
 
-        System.out.println(ttl);
-        Assert.assertEquals(Long.valueOf(10), ttl);
+        connection.set(keySerializer.serialize("key1"), valueSerializer.serialize("value"));
+        connection.lPush(keySerializer.serialize("key2"), valueSerializer.serialize("value"));
+        connection.sAdd(keySerializer.serialize("key3"), valueSerializer.serialize("value"));
+
+
+        DataType type = connection.type(keySerializer.serialize("key1"));
+        System.out.println(type);
+        Assert.assertEquals(DataType.STRING, type);
+
+        type = connection.type(keySerializer.serialize("key2"));
+        System.out.println(type);
+        Assert.assertEquals(DataType.LIST, type);
+
+        type = connection.type(keySerializer.serialize("key3"));
+        System.out.println(type);
+        Assert.assertEquals(DataType.SET, type);
     }
 }
