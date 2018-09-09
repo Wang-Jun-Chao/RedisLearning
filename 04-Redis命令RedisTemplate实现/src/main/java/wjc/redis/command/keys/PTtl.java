@@ -4,8 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import wjc.redis.Command;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: wangjunchao(王俊超)
@@ -16,12 +17,23 @@ public class PTtl extends Command<String, String> {
 
     @Test
     public void test() {
-        template.opsForValue().set("mykey", "Hello");
-        RedisSerializer<String> serializer = (RedisSerializer<String>) template.getKeySerializer();
-        connection.keyCommands().expire(
-                serializer.serialize("mykey"), 1);
 
-        Long pttl = connection.pTtl(serializer.serialize("mykey"));
+    }
+
+    @Override
+    public void testTemplate() {
+        template.opsForValue().set("mykey", "Hello");
+        template.expire("mykey", 1, TimeUnit.SECONDS);
+        Long expire = template.getExpire("mykey", TimeUnit.MILLISECONDS);
+        System.out.println(expire);
+    }
+
+    @Override
+    public void testConnection() {
+        template.opsForValue().set("mykey", "Hello");
+        connection.expire(keySerializer.serialize("mykey"), 1);
+
+        Long pttl = connection.pTtl(keySerializer.serialize("mykey"));
         System.out.println(pttl);
         Assert.assertEquals(Long.valueOf(999), pttl);
     }

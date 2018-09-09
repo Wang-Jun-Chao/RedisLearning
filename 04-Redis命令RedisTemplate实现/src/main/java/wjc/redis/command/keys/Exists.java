@@ -1,7 +1,6 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
-import org.junit.Test;
 import wjc.redis.Command;
 
 /**
@@ -16,8 +15,8 @@ import wjc.redis.Command;
  */
 public class Exists extends Command<String, String> {
 
-    @Test
-    public void test() {
+    @Override
+    public void testTemplate() {
         template.opsForValue().set("key1", "Hello");
 
         Boolean hasKey = template.hasKey("key1");
@@ -25,5 +24,18 @@ public class Exists extends Command<String, String> {
 
         hasKey = template.hasKey("key2");
         Assert.assertEquals(false, hasKey);
+    }
+
+    @Override
+    public void testConnection() {
+
+        template.opsForValue().set("key1", "Hello");
+
+        Boolean exists = connection.exists(keySerializer.serialize("key1"));
+        Assert.assertEquals(true, exists);
+
+        exists = template.hasKey("key2");
+        Assert.assertEquals(false, exists);
+
     }
 }

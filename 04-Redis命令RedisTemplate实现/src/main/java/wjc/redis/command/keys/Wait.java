@@ -18,7 +18,7 @@ public class Wait extends Command<String, String> {
 
     @Test
     @Override
-    public void testTemplate() throws InterruptedException {
+    public void testTemplate() {
         System.out.println("RedisTemplate dose not has wait command");
         Assert.fail();
     }

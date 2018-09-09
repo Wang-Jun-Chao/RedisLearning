@@ -1,7 +1,6 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
-import org.junit.Test;
 import wjc.redis.Command;
 
 import java.util.concurrent.TimeUnit;
@@ -18,8 +17,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class Expire extends Command<String, String> {
 
-    @Test
-    public void test() throws InterruptedException {
+
+    @Override
+    public void testTemplate() {
         template.opsForValue().set("mykey", "Hello");
         template.expire("mykey", 10, TimeUnit.SECONDS);
 
@@ -28,10 +28,37 @@ public class Expire extends Command<String, String> {
 
         template.opsForValue().set("mykey", "Hello World");
 
-        TimeUnit.SECONDS.sleep(11);
+        try {
+            TimeUnit.SECONDS.sleep(11);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         expire = template.getExpire("mykey");
         System.out.println(expire);
 
         Assert.assertEquals(Long.valueOf(-1), expire);
+    }
+
+    @Override
+    public void testConnection() {
+        template.opsForValue().set("mykey", "Hello");
+        connection.expire(keySerializer.serialize("mykey"), 10);
+
+        Boolean exists = connection.exists(keySerializer.serialize("mykey"));
+        Assert.assertTrue(exists);
+
+        Long ttl = connection.ttl(keySerializer.serialize("mykey"));
+        System.out.println(ttl);
+
+        template.opsForValue().set("mykey", "Hello World");
+
+        try {
+            TimeUnit.SECONDS.sleep(11);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ttl = connection.ttl(keySerializer.serialize("mykey"));
+        Assert.assertEquals(Long.valueOf(-1), ttl);
     }
 }

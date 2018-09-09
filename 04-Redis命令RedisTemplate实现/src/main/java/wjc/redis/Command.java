@@ -21,7 +21,7 @@ public abstract class Command<K, V> {
     protected RedisTemplate<K, V> template;
     protected RedisConnection connection;
     protected RedisSerializer<K> keySerializer;
-    protected RedisSerializer<K> valueSerializer;
+    protected RedisSerializer<V> valueSerializer;
 
     public Command() {
         template = template();
@@ -65,9 +65,7 @@ public abstract class Command<K, V> {
         connection.flushAll();
     }
 
-    public void testTemplate() throws InterruptedException {
-    }
+    public abstract void testTemplate();
 
-    public void testConnection() {
-    }
+    public abstract void testConnection();
 }

@@ -1,7 +1,6 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
-import org.junit.Test;
 import wjc.redis.Command;
 
 /**
@@ -15,9 +14,15 @@ import wjc.redis.Command;
  * All Rights Reserved !!!
  */
 public class Object extends Command<String, String> {
-    @Test
-    public void test() {
-        System.out.println("RedistTemplate dose not have command object");
+    @Override
+    public void testTemplate() {
+        System.out.println("RedisTemplate dose not have command object");
+        Assert.fail();
+    }
+
+    @Override
+    public void testConnection() {
+        System.out.println("RedisConnection dose not have command object");
         Assert.fail();
     }
 }

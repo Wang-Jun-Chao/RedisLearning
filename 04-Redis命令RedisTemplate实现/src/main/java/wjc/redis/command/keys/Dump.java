@@ -1,6 +1,5 @@
 package wjc.redis.command.keys;
 
-import org.junit.Test;
 import wjc.redis.Command;
 
 import java.util.Arrays;
@@ -16,11 +15,20 @@ import java.util.Arrays;
  * All Rights Reserved !!!
  */
 public class Dump extends Command<String, Integer> {
-    @Test
-    public void test() {
+
+    @Override
+    public void testTemplate() {
         template.opsForValue().set("mykey", 10);
 
         byte[] dump = template.dump("mykey");
+        System.out.println(Arrays.toString(dump));
+    }
+
+    @Override
+    public void testConnection() {
+        template.opsForValue().set("mykey", 10);
+
+        byte[] dump = connection.dump(keySerializer.serialize("mykey"));
         System.out.println(Arrays.toString(dump));
     }
 }

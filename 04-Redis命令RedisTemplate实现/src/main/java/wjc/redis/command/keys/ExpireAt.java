@@ -1,8 +1,6 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
-import org.junit.Test;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import wjc.redis.Command;
 
 /**
@@ -17,18 +15,25 @@ import wjc.redis.Command;
  */
 public class ExpireAt extends Command<String, String> {
 
-    @Test
-    public void test() {
-        template.opsForValue().set("mykey", "Hello");
-        RedisSerializer<String> serializer = (RedisSerializer<String>) template.getKeySerializer();
+    @Override
+    public void testTemplate() {
+        System.out.println("Use RedisTemplate.expire");
+        Assert.fail();
+    }
 
-        boolean exist = connection.exists(serializer.serialize("mykey"));
+    @Override
+    public void testConnection() {
+        template.opsForValue().set("mykey", "Hello");
+
+        boolean exist = connection.exists(keySerializer.serialize("mykey"));
         System.out.println(exist);
         Assert.assertTrue(exist);
 
-        connection.keyCommands().expireAt(serializer.serialize("mykey"), 1293840000);
-        exist = connection.exists(serializer.serialize("mykey"));
+        connection.keyCommands().expireAt(keySerializer.serialize("mykey"), 1293840000);
+        exist = connection.exists(keySerializer.serialize("mykey"));
         System.out.println(exist);
         Assert.assertFalse(exist);
+
+
     }
 }

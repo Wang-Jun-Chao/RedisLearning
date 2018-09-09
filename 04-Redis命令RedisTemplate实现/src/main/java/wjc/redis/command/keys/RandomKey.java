@@ -13,9 +13,10 @@ import wjc.redis.Command;
 public class RandomKey extends Command<String, String> {
     private final static Logger logger = LoggerFactory.getLogger(RandomKey.class);
 
-    @Test
-    public void test() {
 
+    @Test
+    @Override
+    public void testTemplate() {
         String randomKey = template.randomKey();
         System.out.println(randomKey);
         Assert.assertNull(randomKey);
@@ -24,5 +25,19 @@ public class RandomKey extends Command<String, String> {
         randomKey = template.randomKey();
         System.out.println(randomKey);
         Assert.assertNotNull(randomKey);
+    }
+
+    @Test
+    @Override
+    public void testConnection() {
+        byte[] randomKey = connection.randomKey();
+        System.out.println(randomKey);
+        Assert.assertNotNull(keySerializer.deserialize(randomKey));
+
+
+        template.opsForValue().set("mykey", "Hello");
+        randomKey = connection.randomKey();
+        System.out.println(randomKey);
+        Assert.assertNotNull(keySerializer.deserialize(randomKey));
     }
 }

@@ -1,10 +1,8 @@
 package wjc.redis.command.keys;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import wjc.redis.Command;
 
 /**
@@ -15,21 +13,24 @@ public class PExpireAt extends Command<String, String> {
     private final static Logger logger = LoggerFactory.getLogger(PExpireAt.class);
 
     @Test
-    public void test() {
+    @Override
+    public void testTemplate() {
+
+    }
+
+    @Test
+    @Override
+    public void testConnection() {
         template.opsForValue().set("mykey", "Hello");
-        RedisSerializer<String> serializer = (RedisSerializer<String>) template.getKeySerializer();
-        template.getConnectionFactory().getConnection().keyCommands().pExpire(
-                serializer.serialize("mykey"), 1400);
+        connection.pExpireAt(keySerializer.serialize("mykey"), 1555555555005L);
 
         // 四舍五入
-        Long ttl = template.getConnectionFactory().getConnection().keyCommands().ttl(
-                serializer.serialize("mykey"));
+        Long ttl = connection.ttl(keySerializer.serialize("mykey"));
         System.out.println(ttl);
-        Assert.assertEquals(Long.valueOf(1), ttl);
+//        Assert.assertEquals(Long.valueOf(1), ttl);
 
-        ttl = template.getConnectionFactory().getConnection().keyCommands().pTtl(
-                serializer.serialize("mykey"));
+        ttl = connection.pTtl(keySerializer.serialize("mykey"));
         System.out.println(ttl);
-        Assert.assertTrue(Long.valueOf(1400).compareTo(ttl) > 0);
+//        Assert.assertTrue(Long.valueOf(1400).compareTo(ttl) > 0);
     }
 }
