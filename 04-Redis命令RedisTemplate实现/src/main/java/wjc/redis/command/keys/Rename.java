@@ -14,9 +14,20 @@ public class Rename extends Command<String, String> {
     private final static Logger logger = LoggerFactory.getLogger(Rename.class);
 
     @Test
-    public void test() {
+    @Override
+    public void testTemplate() {
         template.opsForValue().set("mykey", "Hello");
-        template.rename("mykey",  "myotherkey");
+        template.rename("mykey", "myotherkey");
+        String value = template.opsForValue().get("myotherkey");
+        System.out.println(value);
+        Assert.assertNotNull("Hello", value);
+    }
+
+    @Test
+    @Override
+    public void testConnection() {
+        connection.set(keySerializer.serialize("mykey"), valueSerializer.serialize("Hello"));
+        connection.rename(keySerializer.serialize("mykey"), valueSerializer.serialize("myotherkey"));
         String value = template.opsForValue().get("myotherkey");
         System.out.println(value);
         Assert.assertNotNull("Hello", value);
