@@ -65,7 +65,7 @@ public abstract class Command<K, V> {
         connection.flushAll();
     }
 
-    public void testTemplate() {
+    public void testTemplate() throws InterruptedException {
     }
 
     public void testConnection() {
