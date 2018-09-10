@@ -19,14 +19,12 @@ public class Wait extends Command<String, String> {
     @Test
     @Override
     public void testTemplate() {
-        System.out.println("RedisTemplate dose not has wait command");
-        Assert.fail();
+        System.out.println("RedisTemplate dose not have wait command");
     }
 
     @Test
     @Override
     public void testConnection() {
-        System.out.println("RedisConnection dose not has wait command");
-        Assert.fail();
+        System.out.println("RedisConnection dose not have wait command");
     }
 }

@@ -15,7 +15,7 @@ public class PExpireAt extends Command<String, String> {
     @Test
     @Override
     public void testTemplate() {
-
+        System.out.println("use RedisTemplate.expire command");
     }
 
     @Test

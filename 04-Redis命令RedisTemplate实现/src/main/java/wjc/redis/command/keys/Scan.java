@@ -19,11 +19,13 @@ public class Scan extends Command<String, String> {
     private final static Logger logger = LoggerFactory.getLogger(Scan.class);
 
     @Test
+    @Override
     public void testTemplate() {
-
+        System.out.println("RedisTemplate doss not have scan command");
     }
 
     @Test
+    @Override
     public void testConnection() {
         template.opsForValue().set("mykey", "Hello");
         template.opsForValue().set("myotherkey", "World");

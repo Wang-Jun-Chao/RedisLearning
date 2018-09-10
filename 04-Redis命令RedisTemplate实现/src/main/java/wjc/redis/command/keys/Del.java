@@ -20,6 +20,7 @@ import java.util.Collection;
 public class Del extends Command<String, String> {
 
     @Test
+    @Override
     public void testTemplate() {
         template.opsForValue().set("key1", "Hello");
         template.opsForValue().set("key2", "World");
@@ -31,6 +32,7 @@ public class Del extends Command<String, String> {
     }
 
     @Test
+    @Override
     public void testConnection() {
         template.opsForValue().set("key1", "Hello");
         template.opsForValue().set("key2", "World");

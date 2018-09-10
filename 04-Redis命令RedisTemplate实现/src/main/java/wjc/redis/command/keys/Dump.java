@@ -1,5 +1,6 @@
 package wjc.redis.command.keys;
 
+import org.junit.Test;
 import wjc.redis.Command;
 
 import java.util.Arrays;
@@ -16,6 +17,7 @@ import java.util.Arrays;
  */
 public class Dump extends Command<String, Integer> {
 
+    @Test
     @Override
     public void testTemplate() {
         template.opsForValue().set("mykey", 10);
@@ -24,6 +26,7 @@ public class Dump extends Command<String, Integer> {
         System.out.println(Arrays.toString(dump));
     }
 
+    @Test
     @Override
     public void testConnection() {
         template.opsForValue().set("mykey", 10);

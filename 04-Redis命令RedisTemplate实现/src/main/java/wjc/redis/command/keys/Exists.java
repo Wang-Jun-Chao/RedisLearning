@@ -1,6 +1,7 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
+import org.junit.Test;
 import wjc.redis.Command;
 
 /**
@@ -15,6 +16,7 @@ import wjc.redis.Command;
  */
 public class Exists extends Command<String, String> {
 
+    @Test
     @Override
     public void testTemplate() {
         template.opsForValue().set("key1", "Hello");
@@ -26,6 +28,7 @@ public class Exists extends Command<String, String> {
         Assert.assertEquals(false, hasKey);
     }
 
+    @Test
     @Override
     public void testConnection() {
 

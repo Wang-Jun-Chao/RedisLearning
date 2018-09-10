@@ -16,10 +16,6 @@ public class PTtl extends Command<String, String> {
     private final static Logger logger = LoggerFactory.getLogger(PTtl.class);
 
     @Test
-    public void test() {
-
-    }
-
     @Override
     public void testTemplate() {
         template.opsForValue().set("mykey", "Hello");
@@ -28,6 +24,7 @@ public class PTtl extends Command<String, String> {
         System.out.println(expire);
     }
 
+    @Test
     @Override
     public void testConnection() {
         template.opsForValue().set("mykey", "Hello");
@@ -35,6 +32,11 @@ public class PTtl extends Command<String, String> {
 
         Long pttl = connection.pTtl(keySerializer.serialize("mykey"));
         System.out.println(pttl);
+        try {
+            TimeUnit.MILLISECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Assert.assertEquals(Long.valueOf(999), pttl);
     }
 }

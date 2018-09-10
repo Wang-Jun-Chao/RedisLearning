@@ -1,6 +1,7 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import wjc.redis.Command;
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class Persist extends Command<String, String> {
     private final static Logger logger = LoggerFactory.getLogger(Persist.class);
 
+    @Test
     @Override
     public void testTemplate() {
         template.opsForValue().set("mykey", "Hello");
@@ -29,6 +31,7 @@ public class Persist extends Command<String, String> {
         Assert.assertEquals(Long.valueOf(-1), ttl);
     }
 
+    @Test
     @Override
     public void testConnection() {
         template.opsForValue().set("mykey", "Hello");

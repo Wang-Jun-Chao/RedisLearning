@@ -1,5 +1,6 @@
 package wjc.redis.command.keys;
 
+import org.junit.Test;
 import wjc.redis.Command;
 
 /**
@@ -14,12 +15,13 @@ import wjc.redis.Command;
  */
 public class Move extends Command<String, String> {
 
+    @Test
     @Override
     public void testTemplate() {
         template.opsForValue().set("mykey", "Hello World");
         template.move("mykey", 1);
     }
-
+    @Test
     @Override
     public void testConnection() {
         template.opsForValue().set("mykey", "Hello World");

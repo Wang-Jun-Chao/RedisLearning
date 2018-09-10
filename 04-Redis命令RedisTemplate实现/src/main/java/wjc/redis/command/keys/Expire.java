@@ -1,6 +1,7 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
+import org.junit.Test;
 import wjc.redis.Command;
 
 import java.util.concurrent.TimeUnit;
@@ -18,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class Expire extends Command<String, String> {
 
 
+    @Test
     @Override
     public void testTemplate() {
         template.opsForValue().set("mykey", "Hello");
@@ -39,6 +41,7 @@ public class Expire extends Command<String, String> {
         Assert.assertEquals(Long.valueOf(-1), expire);
     }
 
+    @Test
     @Override
     public void testConnection() {
         template.opsForValue().set("mykey", "Hello");

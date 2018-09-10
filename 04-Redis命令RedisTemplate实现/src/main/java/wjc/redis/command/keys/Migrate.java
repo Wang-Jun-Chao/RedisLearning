@@ -1,5 +1,6 @@
 package wjc.redis.command.keys;
 
+import org.junit.Test;
 import org.springframework.data.redis.connection.RedisNode;
 import org.springframework.data.redis.connection.RedisServerCommands;
 import wjc.redis.Command;
@@ -16,11 +17,13 @@ import wjc.redis.Command;
  */
 public class Migrate extends Command<String, String> {
 
+    @Test
     @Override
     public void testTemplate() {
-
+        System.out.println("RedisTemplate dose not have migrate command");
     }
 
+    @Test
     @Override
     public void testConnection() {
         template.opsForValue().set("mykey", "Hello World");
@@ -29,11 +32,11 @@ public class Migrate extends Command<String, String> {
 
 
         // timeout 使用其他机器
-        RedisNode redisNode = new RedisNode("localhost", 6379);
-        connection.migrate(keySerializer.serialize("mykey"), redisNode, 0,
-                RedisServerCommands.MigrateOption.COPY);
-
-        connection.migrate(keySerializer.serialize("mykey"), redisNode, 0,
-                RedisServerCommands.MigrateOption.COPY, 5000);
+//        RedisNode redisNode = new RedisNode("localhost", 6379);
+//        connection.migrate(keySerializer.serialize("mykey"), redisNode, 0,
+//                RedisServerCommands.MigrateOption.COPY);
+//
+//        connection.migrate(keySerializer.serialize("mykey"), redisNode, 0,
+//                RedisServerCommands.MigrateOption.COPY, 5000);
     }
 }

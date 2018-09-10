@@ -1,10 +1,13 @@
 package wjc.redis.command.keys;
 
 import com.google.common.collect.Sets;
+import com.sun.org.apache.bcel.internal.generic.RET;
 import org.junit.Assert;
+import org.junit.Test;
 import wjc.redis.Command;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,6 +23,7 @@ import java.util.Set;
  */
 public class Keys extends Command<String, Integer> {
 
+    @Test
     @Override
     public void testTemplate() {
         Map<String, Integer> map = new HashMap<>();
@@ -49,6 +53,7 @@ public class Keys extends Command<String, Integer> {
         Assert.assertTrue(map.keySet().containsAll(keys));
     }
 
+    @Test
     @Override
     public void testConnection() {
         Map<byte[], byte[]> map = new HashMap<>();
@@ -68,13 +73,25 @@ public class Keys extends Command<String, Integer> {
         }
 
         keys = connection.keys(keySerializer.serialize("t??"));
-        System.out.println(keys);
-        Assert.assertEquals(1, keys.size());
-        Assert.assertTrue(keys.contains(keySerializer.serialize("two")));
+        Set<String> stringKeys = toStringKyes(keys);
+        System.out.println(stringKeys);
+        Assert.assertEquals(1, stringKeys.size());
+        Assert.assertTrue(stringKeys.contains("two"));
 
         keys = connection.keys(keySerializer.serialize("*"));
-        System.out.println(keys);
-        Assert.assertTrue(keys.containsAll(map.keySet()));
-        Assert.assertTrue(map.keySet().containsAll(keys));
+        stringKeys = toStringKyes(keys);
+        Set<String> orgineKeys = toStringKyes(map.keySet());
+
+        System.out.println(stringKeys);
+        Assert.assertTrue(stringKeys.containsAll(orgineKeys));
+        Assert.assertTrue(orgineKeys.containsAll(stringKeys));
+    }
+
+    private Set<String> toStringKyes(Set<byte[]> keys) {
+        Set<String> set = new HashSet<>();
+
+        keys.forEach(item-> set.add(keySerializer.deserialize(item)));
+
+        return set;
     }
 }

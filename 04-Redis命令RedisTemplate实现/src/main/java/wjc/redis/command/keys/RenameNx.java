@@ -14,6 +14,7 @@ public class RenameNx extends Command<String, String> {
     private final static Logger logger = LoggerFactory.getLogger(RenameNx.class);
 
     @Test
+    @Override
     public void testTemplate() {
         template.opsForValue().set("mykey", "Hello");
         template.opsForValue().set("myotherkey", "World");
@@ -26,6 +27,7 @@ public class RenameNx extends Command<String, String> {
     }
 
     @Test
+    @Override
     public void testConnection() {
 
         template.opsForValue().set("mykey", "Hello");

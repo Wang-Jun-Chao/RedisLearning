@@ -32,7 +32,7 @@ public class RandomKey extends Command<String, String> {
     public void testConnection() {
         byte[] randomKey = connection.randomKey();
         System.out.println(randomKey);
-        Assert.assertNotNull(keySerializer.deserialize(randomKey));
+        Assert.assertNull(keySerializer.deserialize(randomKey));
 
 
         template.opsForValue().set("mykey", "Hello");

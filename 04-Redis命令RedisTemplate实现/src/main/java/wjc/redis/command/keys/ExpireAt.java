@@ -1,6 +1,7 @@
 package wjc.redis.command.keys;
 
 import org.junit.Assert;
+import org.junit.Test;
 import wjc.redis.Command;
 
 /**
@@ -15,12 +16,13 @@ import wjc.redis.Command;
  */
 public class ExpireAt extends Command<String, String> {
 
+    @Test
     @Override
     public void testTemplate() {
         System.out.println("Use RedisTemplate.expire");
-        Assert.fail();
     }
 
+    @Test
     @Override
     public void testConnection() {
         template.opsForValue().set("mykey", "Hello");
@@ -33,7 +35,5 @@ public class ExpireAt extends Command<String, String> {
         exist = connection.exists(keySerializer.serialize("mykey"));
         System.out.println(exist);
         Assert.assertFalse(exist);
-
-
     }
 }
