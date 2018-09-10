@@ -30,22 +30,41 @@ public abstract class Command<K, V> {
         valueSerializer = valueSerializer(template);
     }
 
-    private static <K, V> void setSerializer(RedisTemplate<K, V> template) {
-        template.setHashKeySerializer(new GenericJackson2JsonRedisSerializer());
-        template.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        template.setKeySerializer(new GenericJackson2JsonRedisSerializer());
-        template.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+    public static <K, V> RedisTemplate<K, V> template(RedisSerializer<K> keySerializer,
+                                                      RedisSerializer<V> valueSerializer) {
+        return template(keySerializer, valueSerializer,
+                new GenericJackson2JsonRedisSerializer(),
+                new GenericJackson2JsonRedisSerializer());
     }
 
-    public static <K, V> RedisTemplate<K, V> template() {
+    public static <K, V, HK, HV> RedisTemplate<K, V> template(RedisSerializer<K> keySerializer,
+                                                              RedisSerializer<V> valueSerializer,
+                                                              RedisSerializer<HK> hashKeySerializer,
+                                                              RedisSerializer<HV> hashValueSerializer) {
+
         LettuceConnectionFactory factory = new LettuceConnectionFactory();
         factory.afterPropertiesSet();
+
         RedisTemplate<K, V> template = new RedisTemplate<>();
-        setSerializer(template);
+        template.setKeySerializer(keySerializer);
+        template.setValueSerializer(valueSerializer);
+        template.setHashKeySerializer(hashKeySerializer);
+        template.setHashValueSerializer(hashValueSerializer);
+
         template.setConnectionFactory(factory);
 
         template.afterPropertiesSet();
+
         return template;
+    }
+
+    public static <K, V> RedisTemplate<K, V> template() {
+        return (RedisTemplate<K, V>) template(
+                new GenericJackson2JsonRedisSerializer(),
+                new GenericJackson2JsonRedisSerializer(),
+                new GenericJackson2JsonRedisSerializer(),
+                new GenericJackson2JsonRedisSerializer());
     }
 
     public static RedisConnection connection(RedisTemplate template) {
