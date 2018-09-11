@@ -36,32 +36,14 @@ public class GetSet extends Command<String, Integer> {
     @Test
     @Override
     public void testConnection() {
-        RedisTemplate<String, String> template = template(
-                new GenericToStringSerializer<>(String.class),
-                new GenericToStringSerializer<>(String.class));
-        RedisSerializer keySerializer = template.getKeySerializer();
-        RedisSerializer valueSerializer = template.getValueSerializer();
-        template.opsForValue().set("mykey", "This is a string");
-        byte[] b = connection.getRange(keySerializer.serialize("mykey"), 0, 3);
-        System.out.println(valueSerializer.deserialize(b));
-        Assert.assertEquals("This", valueSerializer.deserialize(b));
+        byte[] mycounter = keySerializer.serialize("mycounter");
+        connection.incr(mycounter);
+        byte[] value = connection.getSet(mycounter, valueSerializer.serialize(0));
+        System.out.println(valueSerializer.deserialize(value));
+        Assert.assertEquals(Integer.valueOf(1), valueSerializer.deserialize(value));
 
-
-        b = connection.getRange(keySerializer.serialize("mykey"), -3, -1);
-        System.out.println(valueSerializer.deserialize(b));
-        Assert.assertEquals("ing", valueSerializer.deserialize(b));
-
-        b = connection.getRange(keySerializer.serialize("mykey"), 0, -1);
-        System.out.println(valueSerializer.deserialize(b));
-        Assert.assertEquals("This is a string", valueSerializer.deserialize(b));
-
-        b = connection.getRange(keySerializer.serialize("mykey"), 10, 100);
-        System.out.println(valueSerializer.deserialize(b));
-        Assert.assertEquals("string", valueSerializer.deserialize(b));
-
-        // 完全超出就返回空
-        b = connection.getRange(keySerializer.serialize("mykey"), 100, 1000);
-        System.out.println(valueSerializer.deserialize(b));
-        Assert.assertEquals("", valueSerializer.deserialize(b));
+        value = connection.get(mycounter);
+        System.out.println(valueSerializer.deserialize(value));
+        Assert.assertEquals(Integer.valueOf(0), valueSerializer.deserialize(value));
     }
 }
