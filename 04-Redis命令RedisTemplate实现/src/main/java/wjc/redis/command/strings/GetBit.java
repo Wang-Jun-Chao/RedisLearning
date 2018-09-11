@@ -54,5 +54,7 @@ public class GetBit extends Command<String, String> {
         b = connection.getBit(keySerializer.serialize("mykey"), 100);
         System.out.println(b);
         Assert.assertFalse(b);
+
+
     }
 }
