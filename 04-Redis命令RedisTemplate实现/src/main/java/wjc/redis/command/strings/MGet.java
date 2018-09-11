@@ -25,9 +25,9 @@ public class MGet extends Command<String, String> {
         template.opsForValue().set("key1", "Hello");
         template.opsForValue().set("key2", "World");
 
-        List<String> values = template.opsForValue().multiGet(Lists.newArrayList("key1", "key2"));
+        List<String> values = template.opsForValue().multiGet(Lists.newArrayList("key1", "key2", "nonexisting"));
         System.out.println(values);
-        Assert.assertEquals(values, Lists.newArrayList("Hello", "World"));
+        Assert.assertEquals(values, Lists.newArrayList("Hello", "World", null));
     }
 
     @Test
@@ -37,12 +37,12 @@ public class MGet extends Command<String, String> {
         connection.set(keySerializer.serialize("key1"), valueSerializer.serialize("Hello"));
         connection.set(keySerializer.serialize("key2"), valueSerializer.serialize("World"));
         byte[][] keyArray = Lists.newArrayList(keySerializer.serialize("key1"),
-                keySerializer.serialize("key2")).toArray(new byte[0][0]);
+                keySerializer.serialize("key2"), keySerializer.serialize("nonexisting")).toArray(new byte[0][0]);
         List<byte[]> bytes = connection.mGet(keyArray);
         List<String> value = Lists.newArrayList();
         bytes.forEach(item -> value.add(valueSerializer.deserialize(item)));
 
         System.out.println(value);
-        Assert.assertEquals(value, Lists.newArrayList("Hello", "World"));
+        Assert.assertEquals(value, Lists.newArrayList("Hello", "World", null));
     }
 }
