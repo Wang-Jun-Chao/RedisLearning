@@ -37,7 +37,6 @@ public class SetBit extends Command<String, String> {
     @Override
     public void testConnection() {
 
-
         connection.setBit(keySerializer.serialize("mykey"), 7, true);
         byte[] value = connection.get(keySerializer.serialize("mykey"));
         System.out.println(Arrays.toString(value));
