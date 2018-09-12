@@ -22,6 +22,8 @@ public abstract class Command<K, V> {
     protected RedisConnection connection;
     protected RedisSerializer<K> keySerializer;
     protected RedisSerializer<V> valueSerializer;
+    protected RedisSerializer<K> hashKeySerializer;
+    protected RedisSerializer<V> hashValueSerializer;
 
     public Command() {
         template = template();
@@ -43,6 +45,8 @@ public abstract class Command<K, V> {
         this.connection = connection(template);
         this.keySerializer = keySerializer(template);
         this.valueSerializer = valueSerializer(template);
+        this.hashKeySerializer = hashKeySerializer;
+        this.hashValueSerializer = hashValueSerializer;
     }
 
     public static <K, V> RedisTemplate<K, V> template(RedisSerializer<K> keySerializer,
