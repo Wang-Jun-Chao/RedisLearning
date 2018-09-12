@@ -26,17 +26,13 @@ public abstract class Command<K, V> {
     protected RedisSerializer<V> hashValueSerializer;
 
     public Command() {
-        template = template();
-        keySerializer = keySerializer(template);
-        connection = connection(template);
-        valueSerializer = valueSerializer(template);
+        this(new GenericJackson2JsonRedisSerializer(), new GenericJackson2JsonRedisSerializer(),
+                new GenericJackson2JsonRedisSerializer(), new GenericJackson2JsonRedisSerializer());
     }
 
     public Command(RedisSerializer keySerializer, RedisSerializer valueSerializer) {
-        template = template(keySerializer, valueSerializer);
-        this.connection = connection(template);
-        this.keySerializer = keySerializer(template);
-        this.valueSerializer = valueSerializer(template);
+        this(keySerializer, valueSerializer, new GenericJackson2JsonRedisSerializer(),
+                new GenericJackson2JsonRedisSerializer());
     }
 
     public Command(RedisSerializer keySerializer, RedisSerializer valueSerializer,
@@ -45,8 +41,17 @@ public abstract class Command<K, V> {
         this.connection = connection(template);
         this.keySerializer = keySerializer(template);
         this.valueSerializer = valueSerializer(template);
-        this.hashKeySerializer = hashKeySerializer;
-        this.hashValueSerializer = hashValueSerializer;
+        this.hashKeySerializer = hashKeySerializer(template);
+        this.hashValueSerializer = hashValueSerializer(template);
+
+    }
+
+    public RedisSerializer hashValueSerializer(RedisTemplate<K, V> template) {
+        return template.getHashValueSerializer();
+    }
+
+    public RedisSerializer hashKeySerializer(RedisTemplate<K, V> template) {
+        return template.getHashKeySerializer();
     }
 
     public static <K, V> RedisTemplate<K, V> template(RedisSerializer<K> keySerializer,

@@ -34,11 +34,13 @@ public class HDel extends Command<String, String> {
     public void testConnection() {
         template.opsForHash().put("myhash", "field1", "foo");
 
-        Long delete = connection.hDel(hashK"myhash", "field1");
+        Long delete = connection.hDel(hashKeySerializer.serialize("myhash"),
+                hashValueSerializer.serialize("field1"));
         System.out.println(delete);
         Assert.assertEquals(Long.valueOf(1), delete);
 
-        delete = template.opsForHash().delete("myhash", "field2");
+        delete = connection.hDel(hashKeySerializer.serialize("myhash"),
+                hashValueSerializer.serialize("field2"));
         System.out.println(delete);
         Assert.assertEquals(Long.valueOf(0), delete);
     }
