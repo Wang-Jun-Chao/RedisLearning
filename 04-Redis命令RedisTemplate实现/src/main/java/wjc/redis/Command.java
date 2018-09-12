@@ -30,6 +30,20 @@ public abstract class Command<K, V> {
         valueSerializer = valueSerializer(template);
     }
 
+    public Command(RedisSerializer keySerializer, RedisSerializer valueSerializer) {
+        template = template(keySerializer, valueSerializer);
+        this.connection = connection(template);
+        this.keySerializer = keySerializer(template);
+        this.valueSerializer = valueSerializer(template);
+    }
+
+    public Command(RedisSerializer keySerializer, RedisSerializer valueSerializer,
+                   RedisSerializer hashKeySerializer, RedisSerializer hashValueSerializer) {
+        template = template(keySerializer, valueSerializer, hashKeySerializer, hashValueSerializer);
+        this.connection = connection(template);
+        this.keySerializer = keySerializer(template);
+        this.valueSerializer = valueSerializer(template);
+    }
 
     public static <K, V> RedisTemplate<K, V> template(RedisSerializer<K> keySerializer,
                                                       RedisSerializer<V> valueSerializer) {
