@@ -6,13 +6,10 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.util.CollectionUtils;
 import wjc.redis.Command;
-import wjc.redis.util.StringUtils;
+import wjc.redis.util.RedisUtils;
 
-import java.lang.reflect.Array;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -96,7 +93,7 @@ public class BLPop extends Command<String, String> {
         connection.multi();
         List<byte[]> values = connection.bLPop(5, keySerializer.serialize("job"));
         List<Object> list = connection.exec();
-        String s = StringUtils.toString(list, keySerializer);
+        String s = RedisUtils.toString(list, keySerializer);
         System.out.println(s);
         System.out.println(values);
     }
@@ -113,7 +110,7 @@ public class BLPop extends Command<String, String> {
         connection.multi();
         List<byte[]> values = connection.bLPop(5, keySerializer.serialize("job"));
         List<Object> list = connection.exec();
-        String s = StringUtils.toString(list, keySerializer);
+        String s = RedisUtils.toString(list, keySerializer);
         System.out.println(s);
         System.out.println(values);
     }

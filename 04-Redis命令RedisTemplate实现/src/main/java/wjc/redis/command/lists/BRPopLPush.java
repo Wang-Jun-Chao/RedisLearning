@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import wjc.redis.Command;
-import wjc.redis.util.StringUtils;
+import wjc.redis.util.RedisUtils;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class BRPopLPush extends Command<String, String> {
         Assert.assertEquals(Long.valueOf(1), size);
 
         List<byte[]> bytes = connection.lRange(keySerializer.serialize("receiver"), 0, 0);
-        String s = StringUtils.toString(bytes, valueSerializer);
+        String s = RedisUtils.toString(bytes, valueSerializer);
         System.out.println(s);
     }
 

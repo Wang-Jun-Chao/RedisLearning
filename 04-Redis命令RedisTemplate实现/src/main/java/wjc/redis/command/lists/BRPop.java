@@ -5,13 +5,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.redis.serializer.GenericToStringSerializer;
-import org.springframework.util.CollectionUtils;
 import wjc.redis.Command;
-import wjc.redis.util.StringUtils;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author: wangjunchao(王俊超)

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import wjc.redis.Command;
+import wjc.redis.util.RedisUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -48,28 +49,28 @@ public class LRange extends Command<String, String> {
     public void testConnection() {
         template.opsForList().rightPushAll("mylist", "one", "two", "three");
 
-        List<String> range = toStringList(
+        List<String> range = RedisUtils.toStringList(
                 connection.lRange(keySerializer.serialize("mylist"), 0, 0),
                 valueSerializer);
         System.out.println(range);
         List<String> expected = Lists.newArrayList("one");
         Assert.assertEquals(expected.containsAll(range), range.containsAll(expected));
 
-       range = toStringList(
+       range = RedisUtils.toStringList(
                 connection.lRange(keySerializer.serialize("mylist"), -3, 2),
                 valueSerializer);
         System.out.println(range);
         expected = Lists.newArrayList("one", "two", "three");
         Assert.assertEquals(expected.containsAll(range), range.containsAll(expected));
 
-        range = toStringList(
+        range = RedisUtils.toStringList(
                 connection.lRange(keySerializer.serialize("mylist"), -100, 100),
                 valueSerializer);
         System.out.println(range);
         expected = Lists.newArrayList("one", "two", "three");
         Assert.assertEquals(expected.containsAll(range), range.containsAll(expected));
 
-        range = toStringList(
+        range = RedisUtils.toStringList(
                 connection.lRange(keySerializer.serialize("mylist"), 5, 10),
                 valueSerializer);
         System.out.println(range);
@@ -78,9 +79,4 @@ public class LRange extends Command<String, String> {
 
     }
 
-    private List<String> toStringList(List<byte[]> list, RedisSerializer<String> serializer) {
-        List<String> result = Lists.newArrayList();
-        Optional.of(list).ifPresent(item -> item.forEach(i -> result.add(serializer.deserialize(i))));
-        return result;
-    }
 }

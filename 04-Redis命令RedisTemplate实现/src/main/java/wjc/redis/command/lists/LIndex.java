@@ -1,14 +1,10 @@
 package wjc.redis.command.lists;
 
-import com.google.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import wjc.redis.Command;
-import wjc.redis.util.StringUtils;
-
-import java.util.List;
 
 /**
  * @author: wangjunchao(王俊超)
