@@ -17,17 +17,22 @@ import java.util.Set;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
-public class SUnion extends Command<String, String> {
+public class SUnionStore extends Command<String, String> {
     @Test
     @Override
     public void testTemplate() {
         template.opsForSet().add("key1", "a", "b", "c");
         template.opsForSet().add("key2", "c", "d", "e");
-        Set<String> diff = template.opsForSet().union("key1", "key2");
-        System.out.println(diff);
+
+        Long union = template.opsForSet().unionAndStore("key1", "key2", "key");
+        System.out.println(union);
+        Assert.assertEquals(Long.valueOf(5), union);
+
+        Set<String> members = template.opsForSet().members("key");
         Set<String> expected = Sets.newHashSet("a", "b", "c", "d", "e");
-        Assert.assertTrue(diff.containsAll(expected));
-        Assert.assertTrue(expected.containsAll(diff));
+        System.out.println(expected);
+        Assert.assertTrue(members.containsAll(expected));
+        Assert.assertTrue(expected.containsAll(members));
     }
 
     @Test
@@ -35,13 +40,18 @@ public class SUnion extends Command<String, String> {
     public void testConnection() {
         template.opsForSet().add("key1", "a", "b", "c");
         template.opsForSet().add("key2", "c", "d", "e");
-        Set<byte[]> byteDiff = connection.sUnion(keySerializer.serialize("key1"),
+
+        Long union = connection.sUnionStore(
+                keySerializer.serialize("key"),
+                keySerializer.serialize("key1"),
                 keySerializer.serialize("key2"));
-        Set<String> diff = Sets.newHashSet();
-        byteDiff.forEach(item -> diff.add(valueSerializer.deserialize(item)));
-        System.out.println(diff);
+        System.out.println(union);
+        Assert.assertEquals(Long.valueOf(5), union);
+
+        Set<String> members = template.opsForSet().members("key");
         Set<String> expected = Sets.newHashSet("a", "b", "c", "d", "e");
-        Assert.assertTrue(diff.containsAll(expected));
-        Assert.assertTrue(expected.containsAll(diff));
+        System.out.println(expected);
+        Assert.assertTrue(members.containsAll(expected));
+        Assert.assertTrue(expected.containsAll(members));
     }
 }
