@@ -17,12 +17,14 @@ import java.util.Set;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
-public class SAdd extends Command<String, String> {
+public class SMembers extends Command<String, String> {
     @Test
     @Override
     public void testTemplate() {
         template.opsForSet().add("myset", "Hello", "World", "World");
+
         Set<String> members = template.opsForSet().members("myset");
+
         Set<String> values = Sets.newHashSet("Hello", "World");
         System.out.println(values);
         Assert.assertTrue(members.containsAll(values));
@@ -32,12 +34,12 @@ public class SAdd extends Command<String, String> {
     @Test
     @Override
     public void testConnection() {
-        connection.sAdd(keySerializer.serialize("myset"),
-                valueSerializer.serialize("Hello"),
-                valueSerializer.serialize("World"),
-                valueSerializer.serialize("World"));
+        template.opsForSet().add("myset", "Hello", "World", "World");
 
-        Set<String> members = template.opsForSet().members("myset");
+        Set<byte[]> byteMembers = connection.sMembers(keySerializer.serialize("myset"));
+
+        Set<String> members = Sets.newHashSet();
+        byteMembers.forEach(item -> members.add(valueSerializer.deserialize(item)));
         Set<String> values = Sets.newHashSet("Hello", "World");
         System.out.println(values);
         Assert.assertTrue(members.containsAll(values));
