@@ -1,4 +1,4 @@
-package wjc.redis.command.hashs;
+package wjc.redis.command.hashes;
 
 
 import org.junit.Assert;
